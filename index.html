@@ -111,66 +111,66 @@
   </div>
 
   <script>
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
-    const msg = document.getElementById("msg");
-    const appuntamento = document.getElementById("appuntamento");
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
+  const msg = document.getElementById("msg");
+  const appuntamento = document.getElementById("appuntamento");
 
-    let moveCount = 0;
-    let panicLevel = 5;
-    
+  let moveCount = 0;
+  let panicLevel = 5;
 
-    const messages = [
-      "Nope.",
-      "Ancora?",
-      "Non oggi.",
-      "Mollalo.",
-      "È imbarazzante.",
-      "Hai tempo da perdere, vedo."
-    ];
+  const messages = [
+    "Nope.",
+    "Ancora?",
+    "Non oggi.",
+    "Mollalo.",
+    "Smettila di provarci.",
+    "Hai tempo da perdere, vedo."
+  ];
 
-    function moveButton() {
-      const padding = 40;
-      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+  function moveButton() {
+    const padding = 40;
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
 
-      noBtn.style.left = x + "px";
-      noBtn.style.top = y + "px";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
 
-      panicLevel += 0.1;
-      moveCount++;
+    panicLevel += 0.3;
+    moveCount++;
 
-if (moveCount >= 3) {
-  msg.textContent = messages[Math.floor(Math.random() * messages.length)];
-}
+    if (moveCount >= 3) {
+      msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+    }
+  }
 
-    document.addEventListener("mousemove", (e) => {
-      const rect = noBtn.getBoundingClientRect();
-      const dx = e.clientX - (rect.left + rect.width / 2);
-      const dy = e.clientY - (rect.top + rect.height / 2);
-      const distance = Math.sqrt(dx * dx + dy * dy);
+  // Movimento solo quando il mouse si avvicina
+  document.addEventListener("mousemove", (e) => {
+    const rect = noBtn.getBoundingClientRect();
+    const dx = e.clientX - (rect.left + rect.width / 2);
+    const dy = e.clientY - (rect.top + rect.height / 2);
+    const distance = Math.sqrt(dx * dx + dy * dy);
 
-      if (distance < 700 / panicLevel) {
-        moveButton();
-      }
-    });
+    if (distance < 500 / panicLevel) {
+      moveButton();
+    }
+  });
 
-    noBtn.addEventListener("click", () => {
-      alert("Sei serio?");
-    });
+  noBtn.addEventListener("click", () => {
+    alert("Sei serio?");
+  });
 
-    yesBtn.addEventListener("click", () => {
-      appuntamento.style.display = "block";
-    });
-
-    
-  </script>
+  yesBtn.addEventListener("click", () => {
+    appuntamento.style.display = "block";
+  });
+</script>
 
 </body>
 </html>
+
 
 
 
