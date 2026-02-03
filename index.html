@@ -83,7 +83,6 @@
 <div class="container">
   <p>Vuoi essere il mio Valentino?</p>
 
-  
 <img src="https://media.istockphoto.com/id/636379014/it/foto/le-mani-formando-una-silhouette-un-forma-di-cuore-con-tramonto.jpg?s=612x612&w=0&k=20&c=2-nXCG7BIpn8MYu4YHFQMqX_ctuR-GhrKbfh0bwYARo=">
   
   <button id="yes">Sì</button>
@@ -91,8 +90,7 @@
   
 <div id="appuntamento">
   Abbiamo appuntamento presso "Trattoria Il Portico" alle ore 20 del 14 febbraio. 
-  Non tardare :)
-  
+  Non tardare :) 
 </div>
   <div id="msg"></div>
 </div>
@@ -100,9 +98,6 @@
 <script>
   const noBtn = document.getElementById("no");
   const msg = document.getElementById("msg");
-
-
-});
   let panicLevel = 5;
 
   function moveButton() {
@@ -128,6 +123,13 @@
     ];
 
     msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+
+    const yesBtn = document.getElementById("yes");
+const appuntamento = document.getElementById("appuntamento");
+
+yesBtn.addEventListener("click", () => {
+  appuntamento.style.display = "block";
+});
   }
 
   // Fugge già quando ti avvicini
@@ -154,6 +156,7 @@
 </body>
 
 </html>
+
 
 
 
