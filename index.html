@@ -114,6 +114,7 @@
     const appuntamento = document.getElementById("appuntamento");
 
     let panicLevel = 5;
+    let moveCount = 0;
 
     const messages = [
       "Nope.",
@@ -136,8 +137,11 @@
       noBtn.style.top = y + "px";
 
       panicLevel += 0.1;
-      msg.textContent = messages[Math.floor(Math.random() * messages.length)];
-    }
+      moveCount++;
+
+if (moveCount >= 3) {
+  msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+}
 
     document.addEventListener("mousemove", (e) => {
       const rect = noBtn.getBoundingClientRect();
@@ -163,6 +167,7 @@
 
 </body>
 </html>
+
 
 
 
