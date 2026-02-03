@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Valentino</title>
+
   <style>
     body {
       height: 100vh;
@@ -17,14 +18,25 @@
       position: relative;
       width: 100%;
       height: 100%;
+      text-align: center;
     }
 
-    p {
-      text-align: center;
+    /* Testo principale */
+    #titolo {
       margin-top: 40px;
       font-size: 48px;
+      font-weight: bold;
     }
 
+    /* Immagine */
+    #immagine {
+      display: block;
+      margin: 25px auto;
+      max-width: 400px;
+      border-radius: 12px;
+    }
+
+    /* Pulsanti */
     button {
       padding: 12px 24px;
       font-size: 18px;
@@ -36,7 +48,7 @@
     #yes {
       position: absolute;
       left: 50%;
-      top: 60%;
+      top: 65%;
       transform: translate(-50%, -50%);
       background: #000080;
       color: #F5FFFA;
@@ -49,77 +61,59 @@
       transition: transform 0.01s;
     }
 
+    /* Messaggi che cambiano */
     #msg {
       position: absolute;
-  top: 200px;
-  width: 100%;
-  text-align: center;
-  font-size: 29px;
-  opacity: 2.0;
-}
+      left: 0%;
+      top: 80%;
+      width: 100%;
+      font-size: 26px;
+      opacity: 0.8;
+    }
 
-      #appuntamento {
-  margin-top: 30px;
-  font-size: 32px;
-  font-weight: bold;
-  color: #FAEBD7;
-  text-align: center;
-  display: none;
-}
-        #immagine {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  max-width: 400px;
-  border-radius: 12px;
-}
-
+    /* Messaggio finale */
+    #appuntamento {
+      display: none;
+      margin-top: 40px;
+      font-size: 32px;
+      font-weight: bold;
+      color: #FAEBD7;
     }
   </style>
 </head>
+
 <body>
 
-<div class="container">
-  <p>Vuoi essere il mio Valentino?</p>
+  <div class="container">
 
-<img src="https://media.istockphoto.com/id/636379014/it/foto/le-mani-formando-una-silhouette-un-forma-di-cuore-con-tramonto.jpg?s=612x612&w=0&k=20&c=2-nXCG7BIpn8MYu4YHFQMqX_ctuR-GhrKbfh0bwYARo=" 
-  id="immagine">
-  
-  <button id="yes">Sì</button>
-  <button id="no">No</button>
-  
-<div id="appuntamento">
-  Abbiamo appuntamento presso "Trattoria Il Portico" alle ore 20 del 14 febbraio. 
-  Non tardare :) 
-</div>
-  <div id="msg"></div>
-</div>
+    <div id="titolo">Vuoi essere il mio Valentino?</div>
 
-<script>
-  const noBtn = document.getElementById("no");
-  const msg = document.getElementById("msg");
-  const yesBtn = document.getElementById("yes");
-const appuntamento = document.getElementById("appuntamento");
+    <img
+      id="immagine"
+      src="https://media.istockphoto.com/id/636379014/it/foto/le-mani-formando-una-silhouette-un-forma-di-cuore-con-tramonto.jpg?s=612x612&w=0&k=20&c=2-nXCG7BIpn8MYu4YHFQMqX_ctuR-GhrKbfh0bwYARo="
+      alt="Cuore al tramonto"
+    >
 
-let panicLevel = 5;
+    <button id="yes">Sì</button>
+    <button id="no">No</button>
 
-yesBtn.addEventListener("click", () => {
-  appuntamento.style.display = "block";
-});
-  function moveButton() {
-    const padding = 40;
-    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+    <div id="msg"></div>
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
+    <div id="appuntamento">
+      Abbiamo appuntamento presso “Trattoria Il Portico”<br>
+      alle ore 20 del 14 febbraio.<br>
+      Non tardare :)
+    </div>
 
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
+  </div>
 
-    panicLevel += 0.1;
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const msg = document.getElementById("msg");
+    const appuntamento = document.getElementById("appuntamento");
+
+    let panicLevel = 5;
 
     const messages = [
       "Nope.",
@@ -130,35 +124,46 @@ yesBtn.addEventListener("click", () => {
       "Hai tempo da perdere, vedo."
     ];
 
-    msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+    function moveButton() {
+      const padding = 40;
+      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
 
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
 
-  }
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
 
-  // Fugge già quando ti avvicini
-  document.addEventListener("mousemove", (e) => {
-    const rect = noBtn.getBoundingClientRect();
-    const dx = e.clientX - (rect.left + rect.width / 2);
-    const dy = e.clientY - (rect.top + rect.height / 2);
-    const distance = Math.sqrt(dx * dx + dy * dy);
-
-    if (distance < 700 / panicLevel) {
-      moveButton();
+      panicLevel += 0.1;
+      msg.textContent = messages[Math.floor(Math.random() * messages.length)];
     }
-  });
 
-  // Se per miracolo ci clicchi
-  noBtn.addEventListener("click", () => {
-    alert("Sei serio?");
-  });
+    document.addEventListener("mousemove", (e) => {
+      const rect = noBtn.getBoundingClientRect();
+      const dx = e.clientX - (rect.left + rect.width / 2);
+      const dy = e.clientY - (rect.top + rect.height / 2);
+      const distance = Math.sqrt(dx * dx + dy * dy);
 
-  // Posizione iniziale casuale
-  moveButton();
-</script>
+      if (distance < 700 / panicLevel) {
+        moveButton();
+      }
+    });
+
+    noBtn.addEventListener("click", () => {
+      alert("Sei serio?");
+    });
+
+    yesBtn.addEventListener("click", () => {
+      appuntamento.style.display = "block";
+    });
+
+    moveButton();
+  </script>
 
 </body>
-
 </html>
+
 
 
 
