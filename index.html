@@ -61,7 +61,7 @@
   margin-top: 30px;
   font-size: 32px;
   font-weight: bold;
-  color: #ffcccb;
+  color: #FAEBD7;
   text-align: center;
   display: none;
 }
@@ -82,11 +82,13 @@
 
 <div class="container">
   <p>Vuoi essere il mio Valentino?</p>
+
   
 <img src="https://media.istockphoto.com/id/636379014/it/foto/le-mani-formando-una-silhouette-un-forma-di-cuore-con-tramonto.jpg?s=612x612&w=0&k=20&c=2-nXCG7BIpn8MYu4YHFQMqX_ctuR-GhrKbfh0bwYARo=">
   
   <button id="yes">Sì</button>
   <button id="no">No</button>
+  
 <div id="appuntamento">
   Abbiamo appuntamento presso "Trattoria Il Portico" alle ore 20 del 14 febbraio. 
   Non tardare :)
@@ -99,9 +101,11 @@
   const noBtn = document.getElementById("no");
   const msg = document.getElementById("msg");
   const yesBtn = document.getElementById("yes");
-  const appuntamento = document.getElementById("appuntamento");
-  yesBtn.addEventListener("click", () => {
+const appuntamento = document.getElementById("appuntamento");
+
+ yesBtn.addEventListener("click", () => {
   appuntamento.style.display = "block";
+});
 });
 
 });
@@ -156,6 +160,7 @@
 </body>
 
 </html>
+
 
 
 
