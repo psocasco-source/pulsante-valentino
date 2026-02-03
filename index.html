@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Valentino</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #FFB6C1;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 48px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+    }
+
+    #yes {
+      position: absolute;
+      left: 50%;
+      top: 60%;
+      transform: translate(-50%, -50%);
+      background: #000080;
+      color: #F5FFFA;
+    }
+
+    #no {
+      position: absolute;
+      background: #FAEBD7;
+      color: #8A2BE2;
+      transition: transform 0.01s;
+    }
+
+    #msg {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 14px;
+      opacity: 0.6;
+
+    #immagine {
+      display: block;
+      margin: 20px auto;
+      max-width: 400px;
+      border-radius: 12px;
+}
+
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <p>Vuoi essere il mio Valentino?</p>
+
+<img src="https://media.istockphoto.com/id/636379014/it/foto/le-mani-formando-una-silhouette-un-forma-di-cuore-con-tramonto.jpg?s=612x612&w=0&k=20&c=2-nXCG7BIpn8MYu4YHFQMqX_ctuR-GhrKbfh0bwYARo=" id="immagine"widht="350" height="375" hspace="730">
+
+
+
+
+  <button id="yes">Sì</button>
+  <button id="no">No</button>
+
+  <div id="msg"></div>
+</div>
+
+<script>
+  const noBtn = document.getElementById("no");
+  const msg = document.getElementById("msg");
+
+  let panicLevel = 5;
+
+  function moveButton() {
+    const padding = 40;
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    panicLevel += 0.1;
+
+    const messages = [
+      "Nope.",
+      "Ancora?",
+      "Non oggi.",
+      "Mollalo.",
+      "È imbarazzante.",
+      "Hai tempo da perdere, vedo."
+    ];
+
+    msg.textContent = messages[Math.floor(Math.random() * messages.length)];
+  }
+
+  // Fugge già quando ti avvicini
+  document.addEventListener("mousemove", (e) => {
+    const rect = noBtn.getBoundingClientRect();
+    const dx = e.clientX - (rect.left + rect.width / 2);
+    const dy = e.clientY - (rect.top + rect.height / 2);
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < 700 / panicLevel) {
+      moveButton();
+    }
+  });
+
+  // Se per miracolo ci clicchi
+  noBtn.addEventListener("click", () => {
+    alert("Sei serio?");
+  });
+
+  // Posizione iniziale casuale
+  moveButton();
+</script>
+
+</body>
+</html>
