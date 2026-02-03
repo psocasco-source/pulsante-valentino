@@ -51,17 +51,25 @@
 
     #msg {
       position: absolute;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
-      font-size: 14px;
-      opacity: 0.6;
+  top: 120px;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  opacity: 0.7;
 
     #immagine {
       display: block;
       margin: 20px auto;
       max-width: 400px;
       border-radius: 12px;
+
+      #appuntamento {
+  margin-top: 30px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #ffcccb;
+  text-align: center;
+  display: none;
 }
 
     }
@@ -74,19 +82,23 @@
 
 <img src="https://media.istockphoto.com/id/636379014/it/foto/le-mani-formando-una-silhouette-un-forma-di-cuore-con-tramonto.jpg?s=612x612&w=0&k=20&c=2-nXCG7BIpn8MYu4YHFQMqX_ctuR-GhrKbfh0bwYARo=">
 
-
-
-
   <button id="yes">Sì</button>
   <button id="no">No</button>
-
+<div id="appuntamento">
+  Abbiamo appuntamento presso "Trattoria Il Portico alle 20, non tardare :)
+</div>
   <div id="msg"></div>
 </div>
 
 <script>
   const noBtn = document.getElementById("no");
   const msg = document.getElementById("msg");
+const yesBtn = document.getElementById("yes");
+const appuntamento = document.getElementById("appuntamento");
 
+yesBtn.addEventListener("click", () => {
+  appuntamento.style.display = "block";
+});
   let panicLevel = 5;
 
   function moveButton() {
@@ -138,3 +150,4 @@
 </body>
 
 </html>
+
